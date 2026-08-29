@@ -5,8 +5,8 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 function secret() {
-  const value = process.env.CAPTCHA_SECRET || process.env.ADMIN_SECRET;
-  if (!value) throw new Error('CAPTCHA_SECRET is not configured.');
+  const value = process.env.CAPTCHA_SECRET || process.env.ADMIN_SECRET || process.env.DATABASE_URL;
+  if (!value) throw new Error('Security secret is not configured.');
   return value;
 }
 
