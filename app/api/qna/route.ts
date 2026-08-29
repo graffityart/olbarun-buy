@@ -8,8 +8,8 @@ export const dynamic = 'force-dynamic';
 const clean = (v: unknown, max: number) => String(v ?? '').trim().slice(0, max);
 
 function securitySecret() {
-  const value = process.env.CAPTCHA_SECRET || process.env.ADMIN_SECRET;
-  if (!value) throw new Error('CAPTCHA_SECRET is not configured.');
+  const value = process.env.CAPTCHA_SECRET || process.env.ADMIN_SECRET || process.env.DATABASE_URL;
+  if (!value) throw new Error('Security secret is not configured.');
   return value;
 }
 
