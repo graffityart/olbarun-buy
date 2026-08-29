@@ -1,0 +1,7 @@
+import styles from '../board.module.css';
+
+export default function QnaPage(){return <main className={styles.page}>
+<header className="siteHeader"><div className="container navWrap"><a href="/" className="brand"><span className="brandMark">↻</span><span>올바른<span className="brandBlue">매입</span></span></a><nav className="desktopNav"><a href="/#category">폐컴퓨터 매입</a><a href="/#price">매입단가</a><a href="/process">매입절차</a><a href="/request">수거신청서</a><a href="/customer/notice">고객센터</a></nav><a href="/request/visit" className="btn btnPrimary smallBtn">빠른 견적 문의</a></div></header>
+<section className={styles.hero}><div className="container"><p className="sectionKicker">1:1 Q&amp;A</p><h1>질문답변</h1><p>회원가입 없이 문의할 수 있으며 비밀글로 안전하게 상담할 수 있습니다.</p><div className={styles.boardTabs}><a href="/customer/notice">공지사항</a><a className={styles.active} href="/customer/qna">질문답변 (1:1)</a></div></div></section>
+<section className={styles.content}><div className="container"><div className={styles.boardHead}><div><h2>질문답변 (1:1)</h2><p>비밀글은 작성 시 설정한 비밀번호 확인 후 열람할 수 있습니다.</p></div></div><table className={styles.table}><thead><tr><th>번호</th><th className={styles.title}>제목</th><th>작성자</th><th>작성일</th></tr></thead><tbody><tr><td colSpan={4} className={styles.empty}>등록된 문의가 없습니다.</td></tr></tbody></table><a className={styles.writeButton} href="/customer/qna/write">문의 글쓰기</a></div></section>
+</main>;}
