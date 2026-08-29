@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     if (body.website) return NextResponse.json({ ok: true });
 
-    const type = body.type === 'visit' ? '방문견적 의뢰' : '수거 신청';
+    const type = body.type === 'visit' ? '방문견적 의뢰' : body.type === 'free' ? '무상수거 신청' : '수거 신청';
     const name = clean(body.name, 80);
     const manager = clean(body.manager, 60);
     const phone = onlyDigits(clean(body.phone, 30));
