@@ -3,12 +3,13 @@
 import { FormEvent, useState } from 'react';
 import styles from './request.module.css';
 
-type Props = { mode: 'pickup' | 'visit' };
+type Props = { mode: 'pickup' | 'visit' | 'free' };
 
 export default function RequestForm({ mode }: Props) {
   const [status, setStatus] = useState('');
   const [sending, setSending] = useState(false);
-  const isPickup = mode === 'pickup';
+  const isVisit = mode === 'visit';
+  const isFree = mode === 'free';
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,6 +35,10 @@ export default function RequestForm({ mode }: Props) {
     }
   }
 
+  const dateLabel = isVisit ? '희망 방문일' : isFree ? '희망 수거일' : '희망 수거일';
+  const sectionTitle = isVisit ? '방문 견적 내용' : isFree ? '무상수거 물품 내용' : '수거 물품 내용';
+  const submitLabel = isVisit ? '방문견적 의뢰 접수' : isFree ? '무상수거 신청 접수' : '수거 신청 접수';
+
   return (
     <form className={styles.form} onSubmit={submit}>
       <section className={styles.formSection}>
@@ -44,17 +49,18 @@ export default function RequestForm({ mode }: Props) {
           <label><span>연락처 *</span><input name="phone" required inputMode="tel" placeholder="010-0000-0000" /></label>
           <label><span>이메일</span><input name="email" type="email" /></label>
           <label><span>주소 *</span><input name="address" required placeholder="수거 또는 방문 주소" /></label>
-          <label><span>{isPickup ? '희망 수거일' : '희망 방문일'} *</span><input name="preferredDate" type="date" required /></label>
+          <label><span>{dateLabel} *</span><input name="preferredDate" type="date" required /></label>
         </div>
       </section>
 
       <section className={styles.formSection}>
-        <h2>{isPickup ? '수거 물품 내용' : '방문 견적 내용'}</h2>
+        <h2>{sectionTitle}</h2>
         <div className={styles.rows}>
-          <label><span>의뢰 목적 *</span><select name="purpose" required defaultValue=""><option value="" disabled>선택해주세요</option><option>폐컴퓨터 매입</option><option>서버·네트워크 장비 매입</option><option>통신스크랩·불용자재 매입</option><option>대량 장비 정리</option><option>기타</option></select></label>
+          <label><span>의뢰 목적 *</span><select name="purpose" required defaultValue=""><option value="" disabled>선택해주세요</option><option>폐컴퓨터 매입</option><option>서버·네트워크 장비 매입</option><option>통신스크랩·불용자재 매입</option><option>대량 장비 정리</option>{isFree && <option>매입가치 없는 장비 무상수거</option>}<option>기타</option></select></label>
           <label><span>품목 및 수량 *</span><input name="items" required placeholder="예: 데스크탑 30대, 모니터 20대" /></label>
           <label><span>HDD 데이터 파기</span><select name="dataDestroy" defaultValue="상담 필요"><option>상담 필요</option><option>천공 파기 요청</option><option>파기 불필요</option></select></label>
           <label><span>엘리베이터 / 주차</span><input name="access" placeholder="예: 화물엘리베이터 있음 / 1톤 진입 가능" /></label>
+          {isFree && <label className={styles.full}><span>무상수거 안내</span><div className={styles.privacyBox}>품목, 수량, 지역, 반출 조건에 따라 무상수거 가능 여부가 달라질 수 있습니다. 접수 후 담당자가 내용을 확인하여 가능 여부와 일정을 안내드립니다.</div></label>}
           <label className={styles.full}><span>상세 내용</span><textarea name="note" rows={7} placeholder="장비 상태, 층수, 반출 조건, 방문 시 참고사항 등을 적어주세요." /></label>
           <label className={styles.full}><span>첨부파일</span><input name="attachment" type="file" accept="image/*,.pdf" /><small>현재는 파일명만 접수 알림에 포함되며, 실제 파일 저장 기능은 다음 단계에서 연결합니다.</small></label>
         </div>
@@ -67,7 +73,7 @@ export default function RequestForm({ mode }: Props) {
       </section>
 
       <input name="website" className={styles.honeypot} tabIndex={-1} autoComplete="off" />
-      <button className={styles.submit} disabled={sending}>{sending ? '접수 중...' : isPickup ? '수거 신청 접수' : '방문견적 의뢰 접수'}</button>
+      <button className={styles.submit} disabled={sending}>{sending ? '접수 중...' : submitLabel}</button>
       {status && <p className={styles.status}>{status}</p>}
     </form>
   );
