@@ -1,0 +1,9 @@
+'use client';
+import { FormEvent,useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function PasswordGate({id,title}:{id:string,title:string}){
+ const [error,setError]=useState(''); const [loading,setLoading]=useState(false); const router=useRouter();
+ async function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();setLoading(true);setError('');const fd=new FormData(e.currentTarget);const password=String(fd.get('password')||'');try{const res=await fetch(`/api/qna/${id}/verify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password})});const data=await res.json();if(!res.ok||!data.ok)throw new Error(data.message||'비밀번호가 일치하지 않습니다.');router.refresh();}catch(err){setError(err instanceof Error?err.message:'비밀번호 확인에 실패했습니다.');}finally{setLoading(false);}}
+ return <div style={{maxWidth:520,margin:'35px auto',padding:'32px',border:'1px solid #dce5ef',borderRadius:14,background:'#fff',textAlign:'center'}}><div style={{fontSize:34,marginBottom:12}}>🔒</div><h2 style={{margin:'0 0 10px'}}>비밀글입니다.</h2><p style={{color:'#6f7e90',lineHeight:1.7,marginBottom:22}}>작성할 때 입력한 비밀번호를 입력하면 게시글을 확인할 수 있습니다.<br/><strong>{title}</strong></p><form onSubmit={submit}><input name="password" type="password" required minLength={4} autoFocus placeholder="게시글 비밀번호" style={{width:'100%',height:48,border:'1px solid #cfd8e3',borderRadius:7,padding:'0 12px',fontSize:16}}/><button disabled={loading} type="submit" style={{width:'100%',height:48,marginTop:10,border:0,borderRadius:7,background:'#172d49',color:'#fff',fontWeight:800,cursor:'pointer'}}>{loading?'확인 중...':'확인'}</button>{error&&<p style={{color:'#d13b3b',fontWeight:700,fontSize:14,marginTop:14}}>{error}</p>}</form><a href="/customer/qna" style={{display:'inline-block',marginTop:18,color:'#62748a',fontSize:14}}>목록으로 돌아가기</a></div>;
+}
