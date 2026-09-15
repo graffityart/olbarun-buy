@@ -2,22 +2,60 @@ import LatestBoards from './components/LatestBoards';
 
 export const dynamic='force-dynamic';
 
-const categories=[{title:'폐 컴퓨터 (전체)',desc:['데스크탑 · 본체 · 모니터','노트북 · 일체형 PC','사무용 PC · PC방 장비','기업 불용 전산장비'],cta:'폐컴퓨터 매입 알아보기'},{title:'서버 / 네트워크 장비',desc:['서버 · 랙서버','워크스테이션','스위치 · 라우터','UPS 및 관련 장비'],cta:'서버장비 매입 알아보기'},{title:'통신스크랩 / 불용자재',desc:['통신장비','전자부품 · 보드류','케이블 및 통신자재','기업 불용 전산자재'],cta:'통신스크랩 매입 알아보기'}];
-const priceRows=[['사무용 데스크탑','사양 확인','견적'],['게이밍 PC','CPU / GPU 기준','견적'],['노트북','모델 · 상태 기준','견적'],['LCD 모니터','크기 · 상태 기준','견적'],['메인보드','등급 · 수량 기준','견적']];
-const methods=[{no:'01',title:'출장매입',note:'수량이 많은 경우 출장 방문하여 매입',steps:['견적문의','견적제공','계약 및 날짜협의','방문수거','결제']},{no:'02',title:'현장방문매입',note:'대량 물품 확인이 어려운 경우 진행 · 출장비 무료',steps:['견적문의','날짜협의','현장방문','견적제공','계약 및 날짜협의','방문수거','결제']},{no:'03',title:'택배매입',note:'소량의 경우 택배로 간편하게 매입',steps:['견적문의','견적제공','택배 발송','물품확인','결제']},{no:'04',title:'직접방문',note:'소량·대량 물품을 직접 방문하여 진행 · 현장에서 결제',steps:['견적문의','직접방문','물품확인','결제']}];
-const stepIcons=['✎','▤','▣','⌂','▱','▦','▢'];
-const busanAreas=[['jung-gu','중구'],['seo-gu','서구'],['dong-gu','동구'],['yeongdo-gu','영도구'],['busanjin-gu','부산진구'],['dongnae-gu','동래구'],['nam-gu','남구'],['buk-gu','북구'],['haeundae-gu','해운대구'],['saha-gu','사하구'],['geumjeong-gu','금정구'],['gangseo-gu','강서구'],['yeonje-gu','연제구'],['suyeong-gu','수영구'],['sasang-gu','사상구'],['gijang-gun','기장군']];
-const gyeongnamAreas=[['changwon','창원시'],['gimhae','김해시'],['yangsan','양산시'],['jinju','진주시'],['geoje','거제시'],['tongyeong','통영시'],['sacheon','사천시'],['miryang','밀양시'],['geochang','거창군'],['hamyang','함양군'],['hapcheon','합천군'],['changnyeong','창녕군'],['goseong','고성군'],['namhae','남해군'],['hadong','하동군'],['sancheong','산청군'],['uiryeong','의령군']];
+const buyItems=[
+  {icon:'PC',title:'폐컴퓨터 · 중고컴퓨터',desc:'데스크탑, 노트북, 모니터, 일체형 PC, PC방 및 사무용 컴퓨터',tags:['컴퓨터 매입','폐컴퓨터 수거','대량 매입']},
+  {icon:'SV',title:'서버 · 전산장비',desc:'랙서버, 워크스테이션, 스토리지, UPS 등 기업 전산장비',tags:['서버 매입','전산장비 매입','불용자산']},
+  {icon:'NW',title:'네트워크 · 통신장비',desc:'스위치, 라우터, 통신장비, 보드류, 케이블 및 관련 자재',tags:['네트워크 장비','통신장비','통신스크랩']},
+  {icon:'HD',title:'HDD · SSD 데이터 파기',desc:'매입 장비에 남은 중요 데이터는 요청 시 삭제 또는 물리적 천공 파기',tags:['HDD 파기','SSD 처리','보안 폐기']}
+];
 
-export default function Home(){return <main>
-<header className="siteHeader"><div className="container navWrap"><a href="#top" className="brand"><span className="brandMark">↻</span><span>올바른<span className="brandBlue">매입</span></span></a><nav className="desktopNav"><a href="#category">폐컴퓨터 매입</a><a href="#price">매입단가</a><a href="/process">매입절차</a><a href="/request">수거신청서</a><details style={{position:'relative'}}><summary style={{cursor:'pointer',listStyle:'none'}}>부산/경남 지역 출장매입 ▾</summary><div style={{position:'absolute',right:0,top:28,width:660,padding:22,background:'#fff',border:'1px solid #dce6f0',borderRadius:14,boxShadow:'0 18px 45px rgba(18,38,63,.16)',display:'grid',gridTemplateColumns:'1fr 1fr',gap:24,zIndex:100}}><div><a href="/buy/busan" style={{display:'block',fontSize:16,fontWeight:900,color:'#0c63d4',marginBottom:12}}>부산 출장매입 전체 →</a><div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'9px 14px'}}>{busanAreas.map(([slug,name])=><a key={slug} href={`/buy/busan/${slug}`}>{name}</a>)}</div></div><div><a href="/buy/gyeongnam" style={{display:'block',fontSize:16,fontWeight:900,color:'#0c63d4',marginBottom:12}}>경남 출장매입 전체 →</a><div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'9px 14px'}}>{gyeongnamAreas.map(([slug,name])=><a key={slug} href={`/buy/gyeongnam/${slug}`}>{name}</a>)}</div></div></div></details><a href="#security">데이터파기</a><a href="/customer/notice">고객센터</a></nav><a href="/request" className="btn btnPrimary smallBtn">빠른 견적 문의</a></div></header>
-<section id="top" className="hero"><div className="container heroGrid"><div><p className="eyebrow">폐컴퓨터 매입 전문업체</p><h1>올바른<span>매입</span></h1><p className="heroDesc">사용하지 않는 컴퓨터부터 서버·네트워크 장비, 통신장비와 각종 불용자재까지 수량과 품목에 맞춰 합리적인 가격으로 매입합니다.</p><div className="heroBadge">폐컴퓨터 최고가 매입</div><p className="heroMeta">택배 매입 · 출장 매입 · 대량 수거 가능</p><div className="heroActions"><a href="/request/visit" className="btn btnPrimary">매입 견적 문의</a><a href="#price" className="btn btnGhost">매입 단가 확인</a></div><p className="trustLine">기업 · 사무실 · PC방 · 학교 · 기관 · 개인 매입 상담</p></div><div className="heroVisual"><div className="serverRack rackA"/><div className="serverRack rackB"/><div className="monitor"><div className="monitorScreen"/></div><div className="desktopTower"/><div className="laptop"><div className="laptopScreen"/></div><div className="visualGlow"/></div></div></section>
-<section id="category" className="section"><div className="container threeGrid">{categories.map((item,index)=><article className={`categoryCard category${index+1}`} key={item.title}><div className="categoryIcon">{index===0?'PC':index===1?'SV':'IT'}</div><h2>{item.title}</h2><ul>{item.desc.map(x=><li key={x}>{x}</li>)}</ul><a href="/request/visit" className="textLink">{item.cta} →</a></article>)}</div></section>
-<section id="security" className="securitySection"><div className="container securityGrid"><div><p className="sectionKicker light">DATA SECURITY</p><h2>컴퓨터는 매입하고<br/>중요한 데이터는 <span>확실하게 파기합니다.</span></h2><p>폐컴퓨터에 남은 개인정보와 기업 중요 자료를 보호하기 위해 요청 시 HDD 등 저장장치를 전용 천공 장비로 물리적으로 파손합니다.</p><a href="/request/visit" className="btn btnGreen">데이터 파기 포함 견적 문의</a></div><div className="securitySteps"><div className="securityStep"><span>01</span><div className="driveIcon">HDD</div><strong>저장장치 확인</strong></div><div className="stepArrow">→</div><div className="securityStep"><span>02</span><div className="drillIcon">●</div><strong>천공 처리</strong></div><div className="stepArrow">→</div><div className="securityStep"><span>03</span><div className="driveIcon broken">×</div><strong>폐기·처리</strong></div></div></div></section>
-<section id="price" className="section"><div className="container"><div className="sectionHead"><div><p className="sectionKicker">BUYING PRICE</p><h2>오늘의 매입 단가</h2></div><p>품목과 사양, 수량, 상태에 따라 실제 매입가격은 달라질 수 있습니다.</p></div><div className="priceTabs"><button className="active">폐 컴퓨터</button><button>서버 / 네트워크 장비</button><button>통신스크랩 / 불용자재</button></div><div className="priceGrid"><div className="tableWrap"><table><thead><tr><th>매입 품목</th><th>기준</th><th>매입가</th></tr></thead><tbody>{priceRows.map(row=><tr key={row[0]}>{row.map((cell,i)=><td key={cell} className={i===2?'priceCell':''}>{cell}</td>)}</tr>)}</tbody></table></div><aside className="priceAside"><div className="moneyIcon">₩</div><strong>수량이 많을수록<br/>개별 견적을 추천합니다.</strong><a href="/request/visit" className="btn btnPrimary">견적 의뢰하기</a></aside></div></div></section>
-<section className="section processSection"><div className="container"><div className="centerHead"><p className="sectionKicker">PROCESS</p><h2>올바른매입 절차 안내</h2></div><div className="processRows">{methods.map(m=><article className="processRow" key={m.no}><div className="processIntro"><strong className="processNo">{m.no}<i>.</i></strong><div><h2>{m.title}</h2><p>{m.note}</p></div></div><div className="horizontalSteps">{m.steps.map((s,i)=><div className="horizontalStepWrap" key={s+i}><div className="horizontalStep"><span>{stepIcons[i%stepIcons.length]}</span><strong>{s}</strong></div>{i<m.steps.length-1&&<b className="horizontalArrow">›</b>}</div>)}</div></article>)}</div><div style={{textAlign:'center',marginTop:30}}><a href="/process" className="btn btnGhost">매입 절차 자세히 보기</a></div></div></section>
-<section className="darkCta"><div className="container ctaWrap"><div><h2>수거 신청 또는 방문견적이 필요하신가요?</h2><p>품목과 수량을 알려주시면 현장 상황에 맞는 방식으로 안내해드립니다.</p></div><div className="heroActions"><a href="/request/pickup" className="btn btnYellow">수거신청서</a><a href="/request/visit" className="btn btnGhost">방문견적 의뢰서</a><a href="/request/free" className="btn btnGhost">무상수거</a></div></div></section>
-<section className="section benefitsSection"><div className="container splitBenefits"><div><p className="sectionKicker">BULK BUYING</p><h2>한두 대부터 대량 전산장비까지</h2><div className="miniCards"><div><strong>기업</strong><span>사무실 PC 및 서버 교체</span></div><div><strong>PC방</strong><span>PC·모니터 대량매입</span></div><div><strong>학교·기관</strong><span>불용 전산장비 수거 상담</span></div><div><strong>사업장</strong><span>폐업·이전 장비 일괄 처리</span></div></div></div><div><p className="sectionKicker">CUSTOMER</p><h2>고객센터</h2><div className="reasonGrid"><div><strong>공지사항</strong><span>서비스 주요 안내</span><a href="/customer/notice">확인하기 →</a></div><div><strong>질문답변 (1:1)</strong><span>비회원 비밀글 문의</span><a href="/customer/qna">문의하기 →</a></div></div></div></div></section>
-<LatestBoards/>
-<footer className="footer"><div className="container footerGrid"><div className="brand footerBrand"><span className="brandMark">↻</span><span>올바른매입</span></div><div><strong>신청서</strong><p><a href="/request/pickup">수거신청서</a><br/><a href="/request/visit">방문견적 의뢰서</a><br/><a href="/request/free">무상수거</a></p></div><div><strong>고객센터</strong><p><a href="/customer/notice">공지사항</a><br/><a href="/customer/qna">질문답변 (1:1)</a></p></div><div><strong>데이터 보안</strong><p>저장장치 물리적 천공 파기 상담</p></div></div></footer>
+const customers=[
+  ['기업 · 사무실','PC 교체, 이전, 폐업 시 발생하는 다량의 전산장비를 한 번에 상담합니다.'],
+  ['관공서 · 학교 · 기관','불용 컴퓨터와 전산장비의 품목·수량을 확인해 수거 방식을 안내합니다.'],
+  ['PC방 · 사업장','데스크탑, 모니터, 부품 등 여러 품목을 묶어 일괄 매입 상담이 가능합니다.'],
+  ['개인 · 소량','컴퓨터 한두 대와 부품도 택배 또는 상황에 맞는 방법으로 매입합니다.']
+];
+
+const process=[
+  ['01','간편 견적 접수','품목·수량·사진을 보내주세요.'],
+  ['02','매입 조건 확인','모델과 상태, 수량을 기준으로 확인합니다.'],
+  ['03','방문·택배 수거','대량은 출장, 소량은 택배 등으로 진행합니다.'],
+  ['04','검수 및 정산','현장 또는 입고 검수 후 매입을 마무리합니다.']
+];
+
+export default function Home(){return <main className="homeV2">
+  <header className="siteHeader"><div className="container navWrap">
+    <a href="#top" className="brand"><span className="brandMark">O</span><span>올바른<span className="brandBlue">매입</span></span></a>
+    <nav className="desktopNav"><a href="#items">매입품목</a><a href="#business">기업·대량매입</a><a href="#security">데이터파기</a><a href="#process">매입절차</a><a href="/customer/notice">고객센터</a></nav>
+    <a href="/request/visit" className="btn btnPrimary smallBtn">무료 견적 신청</a>
+  </div></header>
+
+  <section id="top" className="newHero"><div className="container newHeroGrid">
+    <div className="heroCopy"><p className="heroLabel">전국 컴퓨터 · 서버 · 전산장비 전문 매입</p>
+      <h1>버리는 전산장비가 아니라<br/><em>가치를 다시 매입합니다.</em></h1>
+      <p className="newHeroDesc">폐컴퓨터와 중고컴퓨터부터 서버·네트워크 장비·기업 불용 IT자산까지. 품목과 수량에 맞춰 전국에서 상담하고, 대량 물량은 출장 수거까지 진행합니다.</p>
+      <div className="heroQuick"><a href="/request/visit" className="btn heroMainBtn">사진으로 빠른 견적 받기 <b>→</b></a><a href="/request/pickup" className="btn heroSubBtn">수거 신청하기</a></div>
+      <div className="heroPoints"><span>✓ 전국 매입 상담</span><span>✓ 기업 대량 수거</span><span>✓ HDD·SSD 보안 처리</span></div>
+    </div>
+    <div className="heroPanel"><div className="heroPanelTop"><span>OLBARUN BUY</span><b>IT ASSET BUYING</b></div><div className="deviceStage"><div className="device server">SERVER</div><div className="device pc">PC</div><div className="device monitor2">IT</div></div><div className="heroPanelBottom"><strong>컴퓨터 한 대부터<br/>기업 전산실 전체까지</strong><a href="#items">매입 품목 보기 ↓</a></div></div>
+  </div></section>
+
+  <section className="quickStrip"><div className="container quickStripGrid"><div><b>01</b><span>폐·중고 컴퓨터</span></div><div><b>02</b><span>서버·전산장비</span></div><div><b>03</b><span>네트워크·통신장비</span></div><div><b>04</b><span>데이터 파기</span></div></div></section>
+
+  <section id="items" className="section v2Section"><div className="container"><div className="v2Head"><p>WHAT WE BUY</p><h2>어떤 장비를 매입하나요?</h2><span>단순 폐기보다 먼저 매입 가능 여부를 확인하세요. 여러 종류의 장비가 섞여 있어도 한 번에 상담할 수 있습니다.</span></div><div className="buyItemGrid">{buyItems.map((x,i)=><article className="buyItem" key={x.title}><div className="buyItemNo">0{i+1}</div><div className="buyIcon">{x.icon}</div><h3>{x.title}</h3><p>{x.desc}</p><div className="tagRow">{x.tags.map(t=><span key={t}>{t}</span>)}</div><a href="/request/visit">이 품목 견적 문의 <b>↗</b></a></article>)}</div></div></section>
+
+  <section id="business" className="businessSection"><div className="container businessGrid"><div className="businessIntro"><p>BUSINESS & BULK</p><h2>기업의 불용 IT자산,<br/><em>수거부터 데이터 보안까지</em></h2><p>사무실 이전, 장비 교체, 폐업 등으로 한꺼번에 발생한 컴퓨터와 서버를 품목별로 따로 처리할 필요가 없습니다. 현장 상황과 수량을 확인해 적합한 매입·수거 방식을 안내합니다.</p><a href="/request/visit" className="btn btnLight">대량 방문견적 요청 →</a></div><div className="customerCards">{customers.map(([t,d],i)=><div key={t}><span>0{i+1}</span><h3>{t}</h3><p>{d}</p></div>)}</div></div></section>
+
+  <section id="security" className="section securityV2"><div className="container"><div className="v2Head"><p>DATA SECURITY</p><h2>장비보다 중요한 것은<br/>그 안에 남아 있는 데이터입니다.</h2><span>기업 자료와 개인정보가 저장된 HDD·SSD는 요청에 따라 데이터 삭제 또는 물리적 파기 방식으로 처리합니다.</span></div><div className="securityFlow"><article><b>01</b><div className="hddVisual">HDD</div><h3>저장장치 확인</h3><p>수거 장비에서 저장장치를 분류하고 처리 대상을 확인합니다.</p></article><i>→</i><article><b>02</b><div className="hddVisual punched">●</div><h3>데이터 삭제·천공</h3><p>요청 조건에 따라 삭제 또는 물리적 천공 방식으로 처리합니다.</p></article><i>→</i><article><b>03</b><div className="hddVisual destroyed">×</div><h3>파기 완료·처리</h3><p>재사용이 필요한 장비와 파기 대상을 구분해 후속 절차를 진행합니다.</p></article></div></div></section>
+
+  <section id="process" className="section processV2"><div className="container"><div className="v2Head center"><p>4 STEP PROCESS</p><h2>복잡하지 않게, 빠르게 매입합니다.</h2><span>사진과 기본 정보만 준비하면 상담을 시작할 수 있습니다.</span></div><div className="processV2Grid">{process.map(([n,t,d])=><article key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p></article>)}</div><div className="processButtons"><a href="/request/visit" className="btn btnPrimary">방문 견적 의뢰</a><a href="/request/pickup" className="btn btnGhost">수거 신청서 작성</a><a href="/request/free" className="btn btnGhost">무상수거 문의</a></div></div></section>
+
+  <section className="seoContent"><div className="container seoGrid"><div><p className="sectionKicker">OLBARUN BUY</p><h2>폐컴퓨터 매입부터 서버·전산장비 전국매입까지</h2></div><div><p>올바른매입은 사용하지 않는 <strong>폐컴퓨터·중고컴퓨터 매입</strong>과 기업의 <strong>서버·전산장비 매입</strong>을 함께 진행합니다. 데스크탑, 노트북, 모니터뿐 아니라 서버, 워크스테이션, 네트워크 장비와 각종 불용 IT자산까지 상담할 수 있습니다.</p><p>특히 기업·관공서·학교·병원·사무실처럼 수량이 많은 현장은 장비 종류와 수량, 작업 환경을 확인해 출장 수거 방식을 안내하며, 저장장치 보안이 필요한 경우 HDD·SSD 데이터 처리도 함께 상담할 수 있습니다.</p></div></div></section>
+
+  <section className="finalCta"><div className="container finalCtaInner"><div><span>지금 처분할 장비가 있으신가요?</span><h2>사진 몇 장으로<br/>매입 상담을 시작하세요.</h2></div><div><a href="/request/visit" className="btn btnWhite">빠른 견적 신청 →</a><a href="/process" className="finalTextLink">매입 절차 먼저 보기</a></div></div></section>
+
+  <LatestBoards/>
+  <footer className="footer"><div className="container footerGrid"><div className="brand footerBrand"><span className="brandMark">O</span><span>올바른매입</span></div><div><strong>매입 서비스</strong><p>폐컴퓨터 · 중고컴퓨터<br/>서버 · 전산장비<br/>네트워크 · 통신장비</p></div><div><strong>신청·문의</strong><p><a href="/request/pickup">수거신청서</a><br/><a href="/request/visit">방문견적 의뢰서</a><br/><a href="/customer/qna">1:1 문의</a></p></div><div><strong>데이터 보안</strong><p>HDD · SSD 데이터 삭제 및 물리적 파기 상담</p></div></div></footer>
+
+  <div className="mobileBottom"><a href="/request/pickup"><b>⌂</b><span>수거신청</span></a><a href="/request/visit" className="primary"><b>＋</b><span>빠른견적</span></a><a href="/customer/qna"><b>Q</b><span>1:1문의</span></a></div>
 </main>}
