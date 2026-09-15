@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/'],
     },
-    sitemap: 'https://olbarun.kr/sitemap.xml',
+    sitemap: 'https://pumasy.co.kr/sitemap.xml',
   };
 }
