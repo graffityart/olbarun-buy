@@ -1,5 +1,4 @@
 import LatestBoards from './components/LatestBoards';
-
 export const dynamic='force-dynamic';
 const buyItems=[['PC','폐컴퓨터 · 중고컴퓨터','데스크탑, 노트북, 모니터, 일체형 PC, 사무용 PC와 PC방 장비까지 상태와 수량을 확인해 매입합니다.','컴퓨터 매입 · 폐컴퓨터 수거'],['SV','서버 · 전산장비','랙서버, 워크스테이션, 스토리지, UPS 등 기업 전산실에서 발생하는 장비를 일괄 상담합니다.','서버 매입 · 전산장비 매입'],['NW','네트워크 · 통신장비','스위치, 라우터, 통신장비, 보드류, 케이블 및 각종 기업 불용 전산자재를 확인합니다.','네트워크 · 통신장비 매입'],['HD','저장장치 · 부품','CPU, RAM, SSD, HDD, 그래픽카드 등 부품과 저장장치도 장비와 함께 매입 상담이 가능합니다.','컴퓨터 부품 · HDD · SSD']];
 const trust=[['전국','출장·택배 매입 상담'],['기업·기관','대량 IT자산 일괄 처리'],['보안','HDD·SSD 데이터 처리'],['원스톱','견적부터 수거·정산까지']];
@@ -16,6 +15,6 @@ export default function Home(){return <main className="homeV3">
 <section className="keywordSection"><div className="container keywordGrid"><div><span>OLBARUN BUY</span><h2>폐컴퓨터 매입부터<br/>서버·전산장비 전국매입까지</h2></div><div><p><strong>올바른매입</strong>은 폐컴퓨터·중고컴퓨터 매입, 폐컴퓨터 수거, 서버 매입, 전산장비 매입을 함께 진행합니다. 데스크탑·노트북·모니터부터 서버·워크스테이션·네트워크 장비·통신장비와 기업 불용 IT자산까지 상담할 수 있습니다.</p><p>기업·관공서·학교·병원·사무실의 대량 컴퓨터와 전산장비는 현장 조건과 수량을 확인해 출장 수거를 상담하며, HDD·SSD 등 저장장치의 데이터 삭제와 물리적 파기가 필요한 경우 보안 처리도 함께 문의할 수 있습니다.</p></div></div></section>
 <section className="premiumCta"><div className="container premiumCtaInner"><div><span>빠른 매입 상담</span><h2>처분할 장비 사진만 준비하세요.<br/>나머지는 올바른매입이 안내합니다.</h2></div><div><a href="/request/visit" className="btn ctaWhite">무료 견적 신청 →</a><a href="/customer/qna">먼저 문의하기</a></div></div></section>
 <LatestBoards/>
-<footer className="footer"><div className="container footerGrid"><div className="brand footerBrand"><span className="brandMark">O</span><span>올바른매입</span></div><div><strong>매입 서비스</strong><p>폐·중고컴퓨터<br/>서버 · 전산장비<br/>네트워크 · 통신장비</p></div><div><strong>신청·문의</strong><p><a href="/request/pickup">수거신청서</a><br/><a href="/request/visit">방문견적 의뢰서</a><br/><a href="/customer/qna">1:1 문의</a></p></div><div><strong>데이터 보안</strong><p>HDD · SSD 데이터 삭제 및 물리적 파기 상담</p></div></div></footer>
+<footer className="footer"><div className="container"><div className="footerBusiness"><strong>폐컴퓨터 전문 매입업체 [ 올바른 매입 ]</strong><p>상호: 올바른 &nbsp; 대표자: 박자영 &nbsp; 사업자 번호: 808-66-00808</p><p>상호: 올바른 &nbsp;·&nbsp; 업태: 건선업 &nbsp;·&nbsp; 업종: 철거 &nbsp;·&nbsp; 사업자등록번호: 808-66-00808 &nbsp; Tel. <a href="tel:01066484886">010-6648-4886</a> &nbsp; Fax. 0508-956-6109</p></div></div></footer>
 <aside className="quickSide" aria-label="빠른 메뉴"><a className="quickSideMain" href="/request/visit"><span>▤</span><strong>견적 무료 신청</strong></a><a href="/customer/qna"><span>☎</span><strong>상담문의</strong></a><a href="#process"><span>⚒</span><strong>매입절차</strong></a><a href="/request/pickup"><span>▣</span><strong>수거신청</strong></a><a href="#security"><span>◉</span><strong>데이터파기</strong></a></aside>
 </main>}
