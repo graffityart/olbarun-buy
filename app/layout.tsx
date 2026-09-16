@@ -13,6 +13,7 @@ import './gangseo-local.css';
 import './yeonje-local.css';
 import './suyeong-local.css';
 import './namgu-local.css';
+import './bukgu-local.css';
 
 const title='올바른매입 | 폐컴퓨터 중고컴퓨터 매입 | 서버·전산장비 전국매입';
 const description='올바른매입은 전국 폐컴퓨터·중고컴퓨터·서버·네트워크 장비·전산장비를 전문 매입합니다. 기업, 관공서, 학교, 병원, 사무실의 불용 IT자산과 대량 컴퓨터를 출장 수거하며 HDD·SSD 데이터 삭제 및 물리적 파기까지 안전하게 처리합니다.';
