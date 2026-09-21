@@ -1,0 +1,3 @@
+import {cookies} from 'next/headers';import {redirect} from 'next/navigation';import {verifyAdminToken} from '../../../lib/qnaAuth';import CertificateForm from './CertificateForm';
+export const dynamic='force-dynamic';
+export default async function Page(){const s=await cookies();if(!verifyAdminToken(s.get('olbarun_admin')?.value))redirect('/admin/login?next=/admin/certificates');return <CertificateForm/>}
