@@ -9,7 +9,7 @@ export default async function LatestBoards(){
  try{
   const sql=db();
   const noticeRows=await sql`SELECT id,title,created_at FROM notices WHERE is_published=TRUE ORDER BY created_at DESC LIMIT 10`;
-  const requestRows=await sql`SELECT id,title,status,created_at FROM qna_posts ORDER BY id DESC LIMIT 10`;
+  const requestRows=await sql`SELECT id,title,status,created_at FROM qna_posts ORDER BY created_at DESC, id DESC LIMIT 10`;
   notices=noticeRows as Notice[];
   requests=requestRows as PurchaseRequest[];
  }catch(error){console.error('homepage board load error',error)}
