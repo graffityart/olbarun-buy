@@ -26,3 +26,15 @@ CREATE TABLE IF NOT EXISTS qna_posts (
 CREATE INDEX IF NOT EXISTS qna_posts_created_at_idx ON qna_posts (created_at DESC);
 CREATE INDEX IF NOT EXISTS qna_posts_ip_hash_created_at_idx ON qna_posts (ip_hash, created_at DESC);
 CREATE INDEX IF NOT EXISTS notices_created_at_idx ON notices (created_at DESC);
+
+
+CREATE TABLE IF NOT EXISTS purchase_requests (
+  id BIGSERIAL PRIMARY KEY,
+  request_type VARCHAR(30) NOT NULL,
+  title VARCHAR(180) NOT NULL,
+  purpose VARCHAR(80) NOT NULL,
+  items VARCHAR(300) NOT NULL,
+  status VARCHAR(30) NOT NULL DEFAULT 'received',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS purchase_requests_created_at_idx ON purchase_requests (created_at DESC);
