@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import net from 'node:net';
+import { db } from '../../../lib/db';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -83,6 +84,14 @@ export async function POST(request: Request) {
     if (result.code !== '00' && result.code !== '17') {
       console.error('iCODE send failed:', result.code, result.raw);
       return NextResponse.json({ ok: false, message: '문자 알림 전송 중 오류가 발생했습니다.' }, { status: 502 });
+    }
+
+    try {
+      const sql = db();
+      const publicTitle = `${purpose} · ${items}`.slice(0, 180);
+      await sql`INSERT INTO purchase_requests (request_type,title,purpose,items,status) VALUES (${body.type || 'pickup'},${publicTitle},${purpose},${items},'received')`;
+    } catch (dbError) {
+      console.error('purchase request board save error:', dbError);
     }
     return NextResponse.json({ ok: true });
   } catch (error) {
